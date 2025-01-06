@@ -223,8 +223,8 @@
               @canany(['isAdminOfficer','isSuperAdmin'])
                 @if($reservation->approvedstatus_id == 3 || $reservation->approvedstatus_id == 4)
                   <a href="#" title="Approve"  data-id="{{$reservation->id}}" 
-                  data-cat="{{$reservation->reservationschedules ? $reservation->reservationschedules->first()->allday : false}}" 
-                  data-recurrence="{{$reservation->reservationschedules ? $reservation->reservationschedules->first()->recurrencetimes : null}}" 
+                  data-cat="{{optional($reservation->reservationschedules->first())->allday ?? false;}}" 
+                  data-recurrence="{{ optional($reservation->reservationschedules->first())->recurrencetimes ?? null }}"               
                   data-recommended="{{$reservation->recommendedby_id}}" class="btn btn-outline-success btnApprove" 
                   data-toggle="modal" data-target="#approveModal" 
                   data-title="{{$reservation->location}} reserved by {{$reservation->createdby->FirstName}} {{$reservation->createdby->LastName}}" data-action="{{route('approveReservation.reservation')}}"><i class="fas fa-thumbs-up" aria-hidden="true"></i> <span>Approve</span></a>                 
@@ -233,8 +233,8 @@
               @canany(['isAdmin','isDispatcher','isSuperAdmin'])
                 @if($reservation->approvedstatus_id == 4)
                   <a href="#" title="Recommend" data-id="{{$reservation->id}}" 
-                    data-cat="{{$reservation->reservationschedules ? $reservation->reservationschedules->first()->allday : false}}" 
-                    data-recurrence="{{$reservation->reservationschedules ? $reservation->reservationschedules->first()->recurrencetimes : null}}"  
+                    data-cat="{{ optional($reservation->reservationschedules->first())->allday ?? false }}" 
+                    data-recurrence="{{ optional($reservation->reservationschedules->first())->recurrencetimes ?? null }}"  
                     class="btn btn-outline-info btnRecommend" 
                     data-toggle="modal" 
                     data-target="#recommendModal" 
