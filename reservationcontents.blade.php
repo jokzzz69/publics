@@ -223,7 +223,7 @@
               @canany(['isAdminOfficer','isSuperAdmin'])
                 @if($reservation->approvedstatus_id == 3 || $reservation->approvedstatus_id == 4)
                   <a href="#" title="Approve"  data-id="{{$reservation->id}}" 
-                  data-cat="{{optional($reservation->reservationschedules->first())->allday ?? false;}}" 
+                  data-cat="{{optional($reservation->reservationschedules->first())->allday ?? false}}" 
                   data-recurrence="{{ optional($reservation->reservationschedules->first())->recurrencetimes ?? null }}"               
                   data-recommended="{{$reservation->recommendedby_id}}" class="btn btn-outline-success btnApprove" 
                   data-toggle="modal" data-target="#approveModal" 
